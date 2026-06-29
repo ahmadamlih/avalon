@@ -1,0 +1,17 @@
+{
+  "name": "Avalon · The Resistance",
+  "short_name": "Avalon",
+  "description": "A bilingual online social-deduction game.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0c0e",
+  "theme_color": "#0a0c14",
+  "lang": "en",
+  "dir": "auto",
+  "icons": [
+    { "src": "char/card-back.jpg", "sizes": "192x192", "type": "image/jpeg", "purpose": "any" },
+    { "src": "char/card-back.jpg", "sizes": "512x512", "type": "image/jpeg", "purpose": "any" }
+  ]
+}
