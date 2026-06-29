@@ -2382,9 +2382,12 @@ function renderTable(gs){
   const apw=document.querySelector('.ap-wrap');
   if(apw){
     if(isMob()){
-      const maxY=seats.length?Math.max(...seats.map(s=>s.y)):Ry;
-      const seatBelow=cardH/2+26;                 // card half + name plate below it
-      const lift=Math.max(0,H-(cy+maxY+seatBelow)-18);   // leave ~18px clearance between seats and the action bar
+      // Measure the ACTUAL lowest seat (card + name plate) from the rendered DOM, then lift the bar
+      // to sit just below it. Estimating from card size drifted on some screens and let the table
+      // overlap the vote buttons; a real measurement clears them no matter how big the cards render.
+      const aTop=arena.getBoundingClientRect().top;
+      let lowest=0;arena.querySelectorAll('.nt-seat').forEach(s=>{lowest=Math.max(lowest,s.getBoundingClientRect().bottom-aTop);});
+      const lift=Math.max(0,H-(lowest||H)-22);   // keep ≥22px clearance between the seats and the action bar
       apw.style.transform=lift>4?`translateY(${-lift}px)`:'';
     } else apw.style.transform='';
   }
